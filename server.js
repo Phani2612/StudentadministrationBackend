@@ -10,6 +10,8 @@ const JWT = require('jsonwebtoken')
 
 const App = Express()
 
+const path = require('path')
+
 App.use(Cookieparser())
 
 App.set("view engine" , "ejs")
@@ -20,7 +22,20 @@ App.use(CORS())
 
 App.use(Express.json())
 
+const Mycluster = require('cluster')
+
+const OS = require('os')
+
+const Corecount = OS.cpus().length
+
 const Bcrypt = require('bcryptjs')
+
+App.use(Express.static(path.join(__dirname, 'build')));
+
+// Handle all other requests by serving the index.html file
+App.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
 
 
 Mongoose.connect("mongodb+srv://Phani2612:2612@cluster0.nxfzz84.mongodb.net/Studentdatabase?retryWrites=true&w=majority&appName=Cluster0")
@@ -96,6 +111,7 @@ const Registermodel = Mongoose.model('users', Registerschema)
 
 
 const StudentModel = Mongoose.model('students' , StudentSchema)
+
 
 
 
