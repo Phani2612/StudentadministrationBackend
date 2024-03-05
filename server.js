@@ -364,12 +364,12 @@ App.patch('/Update/:id' ,  async function(req,res)
             await StudentModel.findOneAndUpdate({rollno : data} , {$set : {age : Myage}}  , {new:true})
         }
 
-        else if(i.city != Mycity)
+        if(i.city != Mycity)
         {
             await StudentModel.findOneAndUpdate({rollno : data} , {$set : {city : Mycity}}  , {new:true})
         }
 
-        else if(i.name != Myname)
+        if(i.name != Myname)
         {
             await StudentModel.findOneAndUpdate({rollno : data} , {$set : {name : Myname}}  , {new:true})
         }
