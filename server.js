@@ -30,13 +30,6 @@ const Corecount = OS.cpus().length
 
 const Bcrypt = require('bcryptjs')
 
-App.use(Express.static(path.join(__dirname, 'build')));
-
-// Handle all other requests by serving the index.html file
-App.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
-});
-
 
 Mongoose.connect("mongodb+srv://Phani2612:2612@cluster0.nxfzz84.mongodb.net/Studentdatabase?retryWrites=true&w=majority&appName=Cluster0")
 
